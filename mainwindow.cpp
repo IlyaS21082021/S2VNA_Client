@@ -81,16 +81,13 @@ int MainWindow::receiveBuf()
 
 void MainWindow::parseData()
 {
-    dataPoint dp;
     QString stringData(databuf.data());
     stringData.removeLast();
     QStringList dataList = stringData.split(",", Qt::SkipEmptyParts);
     auto i = dataList.begin();
     while (i < dataList.end())
     {
-        dp.val1 = (*i).toDouble();
-        dp.val2 = (*(i+1)).toDouble();
-        dataPoints.push_back(dp);
+        dataPoints.push_back(dataPoint({(*i).toDouble(), (*(i+1)).toDouble()}));
         i += 2;
     }
 }
